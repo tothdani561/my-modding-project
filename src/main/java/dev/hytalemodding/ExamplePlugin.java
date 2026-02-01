@@ -1,10 +1,12 @@
 package dev.hytalemodding;
 
 import com.hypixel.hytale.logger.HytaleLogger;
+import com.hypixel.hytale.server.core.event.events.player.PlayerChatEvent;
 import com.hypixel.hytale.server.core.event.events.player.PlayerReadyEvent;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
 import dev.hytalemodding.commands.*;
+import dev.hytalemodding.events.BasicChatFormatter;
 import dev.hytalemodding.events.ExampleCancelCraft;
 import dev.hytalemodding.events.ExampleEvent;
 
@@ -32,6 +34,7 @@ public class ExamplePlugin extends JavaPlugin {
 
     private void events() {
         this.getEventRegistry().registerGlobal(PlayerReadyEvent.class, ExampleEvent::onPlayerReady);
+        this.getEventRegistry().registerGlobal(PlayerChatEvent.class, BasicChatFormatter::onPlayerChat);
     }
 
     private void commands() {
