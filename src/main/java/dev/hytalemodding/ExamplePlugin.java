@@ -7,6 +7,8 @@ import com.hypixel.hytale.server.core.event.events.player.PlayerReadyEvent;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
 import dev.hytalemodding.block.ExampleBlock;
+import dev.hytalemodding.block.ExampleInitializer;
+import dev.hytalemodding.block.ExampleSystem;
 import dev.hytalemodding.commands.*;
 import dev.hytalemodding.events.BasicChatFormatter;
 import dev.hytalemodding.events.ExampleCancelCraft;
@@ -26,6 +28,7 @@ public class ExamplePlugin extends JavaPlugin {
 
     public ExamplePlugin(@Nonnull JavaPluginInit init) {
         super(init);
+        instance = this;
     }
 
     @Override
@@ -39,7 +42,9 @@ public class ExamplePlugin extends JavaPlugin {
 
     @Override
     protected void start() {
-        // TODO
+        instance = this;
+        this.getChunkStoreRegistry().registerSystem(new ExampleSystem());
+        this.getChunkStoreRegistry().registerSystem(new ExampleInitializer());
     }
 
     private void systems() {

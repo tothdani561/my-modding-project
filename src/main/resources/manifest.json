@@ -12,7 +12,10 @@
   ],
   "Website": "https://your-plugin-website.com",
   "ServerVersion": "*",
-  "Dependencies": {},
+  "Dependencies": {
+    "Hytale:EntityModule": "*",
+    "Hytale:BlockModule": "*"
+  },
   "OptionalDependencies": {},
   "DisabledByDefault": false,
   "IncludesAssetPack": false,
