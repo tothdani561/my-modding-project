@@ -5,6 +5,7 @@ import com.hypixel.hytale.server.core.event.events.player.PlayerReadyEvent;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
 import dev.hytalemodding.commands.*;
+import dev.hytalemodding.events.ExampleCancelCraft;
 import dev.hytalemodding.events.ExampleEvent;
 
 import javax.annotation.Nonnull;
@@ -22,6 +23,11 @@ public class ExamplePlugin extends JavaPlugin {
         LOGGER.atInfo().log("[STOKEYNPCS] ExamplePlugin is initializing!");
         commands();
         events();
+        systems();
+    }
+
+    private void systems() {
+        this.getEntityStoreRegistry().registerSystem(new ExampleCancelCraft());
     }
 
     private void events() {

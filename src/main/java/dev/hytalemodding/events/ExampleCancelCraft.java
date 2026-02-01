@@ -32,7 +32,7 @@ import java.util.Objects;
  */
 public class ExampleCancelCraft extends EntityEventSystem<EntityStore, CraftRecipeEvent.Pre> {
 
-    protected ExampleCancelCraft() {
+    public ExampleCancelCraft() {
         super(CraftRecipeEvent.Pre.class);
     }
 
