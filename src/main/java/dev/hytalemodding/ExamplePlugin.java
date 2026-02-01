@@ -1,10 +1,12 @@
 package dev.hytalemodding;
 
+import com.hypixel.hytale.component.ComponentType;
 import com.hypixel.hytale.logger.HytaleLogger;
 import com.hypixel.hytale.server.core.event.events.player.PlayerChatEvent;
 import com.hypixel.hytale.server.core.event.events.player.PlayerReadyEvent;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
+import dev.hytalemodding.block.ExampleBlock;
 import dev.hytalemodding.commands.*;
 import dev.hytalemodding.events.BasicChatFormatter;
 import dev.hytalemodding.events.ExampleCancelCraft;
@@ -14,7 +16,13 @@ import javax.annotation.Nonnull;
 
 public class ExamplePlugin extends JavaPlugin {
 
+    protected static ExamplePlugin instance;
     public static final HytaleLogger LOGGER = HytaleLogger.forEnclosingClass();
+    private ComponentType exampleBlockComponentType;
+
+    public static ExamplePlugin get() {
+        return instance;
+    }
 
     public ExamplePlugin(@Nonnull JavaPluginInit init) {
         super(init);
@@ -26,6 +34,12 @@ public class ExamplePlugin extends JavaPlugin {
         commands();
         events();
         systems();
+        this.exampleBlockComponentType = this.getChunkStoreRegistry().registerComponent(ExampleBlock.class, "ExampleBlock", ExampleBlock.CODEC);
+    }
+
+    @Override
+    protected void start() {
+        // TODO
     }
 
     private void systems() {
@@ -44,5 +58,9 @@ public class ExamplePlugin extends JavaPlugin {
         this.getCommandRegistry().registerCommand(new AbsTargetPlayerHealCommand());
         this.getCommandRegistry().registerCommand(new AbsTargetEntityCommand());
         this.getCommandRegistry().registerCommand(new AbsTargetEntityCommand());
+    }
+
+    public ComponentType getExampleBlockComponentType() {
+        return this.exampleBlockComponentType;
     }
 }
