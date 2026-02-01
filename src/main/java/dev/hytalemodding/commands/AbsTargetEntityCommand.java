@@ -3,6 +3,7 @@ package dev.hytalemodding.commands;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.server.core.Message;
+import com.hypixel.hytale.server.core.command.commands.player.inventory.GiveCommand;
 import com.hypixel.hytale.server.core.command.system.CommandContext;
 import com.hypixel.hytale.server.core.command.system.arguments.system.DefaultArg;
 import com.hypixel.hytale.server.core.command.system.arguments.system.FlagArg;
@@ -36,6 +37,11 @@ public class AbsTargetEntityCommand extends AbstractTargetEntityCommand {
         super("targetentitycmd", "An abstract target entity command example");
         this.healthArg = this.withDefaultArg("health", "Amount to heal entity", ArgTypes.FLOAT, (float)100, "Desc of Default: 100");
         this.debugArg = this.withFlagArg("debug", "Add debug logs");
+
+        // addUsageVariant(new GiveOtherCommand()); // Example of adding usage variants from other commands
+
+        // Adding aliases to the command
+        addAliases("tec", "targc");
     }
 
     @Override
